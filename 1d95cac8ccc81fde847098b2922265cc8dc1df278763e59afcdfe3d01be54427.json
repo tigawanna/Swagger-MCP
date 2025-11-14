@@ -1,0 +1,3325 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/auth/applications/": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Get Applications",
+        "operationId": "get_applications_auth_applications__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Application"
+                  },
+                  "type": "array",
+                  "title": "Response Get Applications Auth Applications  Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Create Application",
+        "operationId": "create_application_auth_applications__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/auth/applications/{application_id}": {
+      "delete": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Delete Application",
+        "operationId": "delete_application_auth_applications__application_id__delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "application_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/auth/resources/": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Get Resources",
+        "operationId": "get_resources_auth_resources__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Resource"
+                  },
+                  "type": "array",
+                  "title": "Response Get Resources Auth Resources  Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Create Resource",
+        "operationId": "create_resource_auth_resources__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resource"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/auth/scopes/": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Get Scopes",
+        "operationId": "get_scopes_auth_scopes__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Scope"
+                  },
+                  "type": "array",
+                  "title": "Response Get Scopes Auth Scopes  Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Create Scope",
+        "operationId": "create_scope_auth_scopes__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BaseCondensedScope"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CondensedScope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/auth/recaptcha/verify/": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Verify Recaptcha",
+        "description": "Verify a Google reCAPTCHA Enterprise token.\n\nThis is a public endpoint that validates reCAPTCHA tokens from client applications\nto protect against bots and automated abuse. No authentication required.",
+        "operationId": "verify_recaptcha_auth_recaptcha_verify__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecaptchaVerifyInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecaptchaVerifyOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tokens/": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "summary": "Login For Access Token",
+        "operationId": "login_for_access_token_tokens__post",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_login_for_access_token_tokens__post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tokens/api/": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "summary": "Api Login For Access Token",
+        "operationId": "api_login_for_access_token_tokens_api__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tokens/api/service-accounts/": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "summary": "Service Account Login For Access Token",
+        "operationId": "service_account_login_for_access_token_tokens_api_service_accounts__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/tokens/refresh/": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "summary": "Refresh Access Token",
+        "operationId": "refresh_access_token_tokens_refresh__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshAccessTokenInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tokens/sign-in/single-factor/": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "summary": "Single Factor Sign In",
+        "operationId": "single_factor_sign_in_tokens_sign_in_single_factor__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SingleFactorSignInInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tokens/sign-in/single-factor/validate-code/": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "summary": "Single Factor Code Validation",
+        "operationId": "single_factor_code_validation_tokens_sign_in_single_factor_validate_code__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerificationCodeInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tokens/sign-in/single-factor/validate-token/": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "summary": "Single Factor Token Validation",
+        "operationId": "single_factor_token_validation_tokens_sign_in_single_factor_validate_token__post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 64,
+              "minLength": 64,
+              "title": "Token"
+            },
+            "name": "token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tokens/accept-terms/": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "summary": "Accept Terms",
+        "description": "Accept terms of service (one-way operation from False to True)",
+        "operationId": "accept_terms_tokens_accept_terms__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptTermsInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/": {
+      "get": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "List Users",
+        "operationId": "list_users_profiles__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ListUserOutput"
+                  },
+                  "type": "array",
+                  "title": "Response List Users Profiles  Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Update User",
+        "operationId": "update_user_profiles__put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Create User",
+        "operationId": "create_user_profiles__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScopelessUser"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Delete User",
+        "operationId": "delete_user_profiles__delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/create-passwordless-user/": {
+      "post": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Create Passwordless User",
+        "operationId": "create_passwordless_user_profiles_create_passwordless_user__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePasswordlessUserInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScopelessUser"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/emails/{email}/": {
+      "get": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Get User By Email",
+        "operationId": "get_user_by_email_profiles_emails__email___get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "title": "Email"
+            },
+            "name": "email",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/{user_id}/": {
+      "get": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Get User By Id",
+        "operationId": "get_user_by_id_profiles__user_id___get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/change_password/": {
+      "put": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Change Password",
+        "operationId": "change_password_profiles_change_password__put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/add_scopes/": {
+      "post": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Add Scopes",
+        "operationId": "add_scopes_profiles_add_scopes__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddScopesInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/add-community/": {
+      "post": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Add Community",
+        "operationId": "add_community_profiles_add_community__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCommunityInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/remove_scopes/": {
+      "post": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Remove Scopes",
+        "operationId": "remove_scopes_profiles_remove_scopes__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddScopesInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/bulk-get/": {
+      "post": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Bulk Get Profiles",
+        "operationId": "bulk_get_profiles_profiles_bulk_get__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkGetUserInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GetUserOutput"
+                  },
+                  "type": "array",
+                  "title": "Response Bulk Get Profiles Profiles Bulk Get  Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/duplicate-emails/": {
+      "get": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "List Duplicate Emails",
+        "description": "Get all duplicate emails in the system.\n\nReturns a list of emails that appear more than once in the database,\nalong with their occurrence count. Ordered by count descending.",
+        "operationId": "list_duplicate_emails_profiles_duplicate_emails__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListDuplicateEmailsOutput"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/profiles/bulk-get-by-email/": {
+      "post": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Bulk Get Profiles By Email",
+        "operationId": "bulk_get_profiles_by_email_profiles_bulk_get_by_email__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkGetUserByEmailInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GetUserOutput"
+                  },
+                  "type": "array",
+                  "title": "Response Bulk Get Profiles By Email Profiles Bulk Get By Email  Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/communities/": {
+      "get": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "List Communities",
+        "operationId": "list_communities_communities__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ListCommunityOutput"
+                  },
+                  "type": "array",
+                  "title": "Response List Communities Communities  Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Create Community",
+        "operationId": "create_community_communities__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCommunityInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCommunityOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/communities/{community_id}/": {
+      "get": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Get Community",
+        "operationId": "get_community_communities__community_id___get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "community_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCommunityOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Update Community",
+        "operationId": "update_community_communities__community_id___put",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "community_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCommunityInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCommunityOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Delete Community",
+        "operationId": "delete_community_communities__community_id___delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "community_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/communities/bulk-get/": {
+      "post": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Bulk Get Communities",
+        "operationId": "bulk_get_communities_communities_bulk_get__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkGetCommunityInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GetCommunityOutput"
+                  },
+                  "type": "array",
+                  "title": "Response Bulk Get Communities Communities Bulk Get  Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/communities/users/{user_id}/": {
+      "get": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Get User Communities",
+        "operationId": "get_user_communities_communities_users__user_id___get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserCommunitiesOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/communities/{community_id}/users/": {
+      "get": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "List Community Users By Community",
+        "operationId": "list_community_users_by_community_communities__community_id__users__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "community_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ListCommunityUserOutput"
+                  },
+                  "type": "array",
+                  "title": "Response List Community Users By Community Communities  Community Id  Users  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Create Community User",
+        "operationId": "create_community_user_communities__community_id__users__post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "community_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCommunityUserInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCommunityUserOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/communities/{community_id}/users/{user_id}/": {
+      "get": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Get Community User",
+        "operationId": "get_community_user_communities__community_id__users__user_id___get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "community_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCommunityUserOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Update Community User",
+        "operationId": "update_community_user_communities__community_id__users__user_id___put",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "community_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCommunityUserInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCommunityUserOutput"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "communities"
+        ],
+        "summary": "Delete Community User",
+        "operationId": "delete_community_user_communities__community_id__users__user_id___delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "community_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/versions/": {
+      "get": {
+        "tags": [
+          "versions"
+        ],
+        "summary": "List Active Versions",
+        "operationId": "list_active_versions_versions__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Version"
+                  },
+                  "type": "array",
+                  "title": "Response List Active Versions Versions  Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "versions"
+        ],
+        "summary": "Create Version",
+        "operationId": "create_version_versions__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VersionInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Version"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/versions/deprecate/{id}/": {
+      "post": {
+        "tags": [
+          "versions"
+        ],
+        "summary": "Deprecate Version",
+        "operationId": "deprecate_version_versions_deprecate__id___post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Health Check",
+        "description": "Health check endpoint for AWS load balancers and monitoring",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AcceptTermsInput": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id"
+        ],
+        "title": "AcceptTermsInput"
+      },
+      "AddCommunityInput": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "community_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "role": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CommunityUserRole"
+              }
+            ],
+            "default": "USER"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "community_id"
+        ],
+        "title": "AddCommunityInput"
+      },
+      "AddScopesInput": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "scopes": {
+            "items": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "type": "array",
+            "title": "Scopes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "scopes"
+        ],
+        "title": "AddScopesInput"
+      },
+      "Application": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "is_active"
+        ],
+        "title": "Application"
+      },
+      "ApplicationInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "is_active"
+        ],
+        "title": "ApplicationInput"
+      },
+      "BaseCondensedScope": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "resource_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "application_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "is_active",
+          "resource_id",
+          "application_id"
+        ],
+        "title": "BaseCondensedScope"
+      },
+      "Body_login_for_access_token_tokens__post": {
+        "properties": {
+          "grant_type": {
+            "type": "string",
+            "pattern": "password",
+            "title": "Grant Type"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "default": ""
+          },
+          "client_id": {
+            "type": "string",
+            "title": "Client Id"
+          },
+          "client_secret": {
+            "type": "string",
+            "title": "Client Secret"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "Body_login_for_access_token_tokens__post"
+      },
+      "BulkGetCommunityInput": {
+        "properties": {
+          "community_ids": {
+            "items": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "type": "array",
+            "title": "Community Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "community_ids"
+        ],
+        "title": "BulkGetCommunityInput"
+      },
+      "BulkGetUserByEmailInput": {
+        "properties": {
+          "emails": {
+            "items": {
+              "type": "string",
+              "format": "email"
+            },
+            "type": "array",
+            "title": "Emails"
+          }
+        },
+        "type": "object",
+        "required": [
+          "emails"
+        ],
+        "title": "BulkGetUserByEmailInput"
+      },
+      "BulkGetUserInput": {
+        "properties": {
+          "user_ids": {
+            "items": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "type": "array",
+            "title": "User Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_ids"
+        ],
+        "title": "BulkGetUserInput"
+      },
+      "ChangePasswordInput": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "old_password": {
+            "type": "string",
+            "title": "Old Password"
+          },
+          "new_password": {
+            "type": "string",
+            "title": "New Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "old_password",
+          "new_password"
+        ],
+        "title": "ChangePasswordInput"
+      },
+      "Community": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "slug": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 3,
+            "pattern": "^[a-z0-9-_]+$",
+            "format": "slug",
+            "title": "Slug",
+            "description": "URL-friendly slug containing only lowercase letters, numbers, hyphens, and underscores",
+            "example": "my-community-slug"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created Date"
+          },
+          "modified_date": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Modified Date"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "is_active",
+          "created_date",
+          "modified_date"
+        ],
+        "title": "Community"
+      },
+      "CommunityUserRole": {
+        "type": "string",
+        "enum": [
+          "OWNER",
+          "EDITOR",
+          "CHECK_IN",
+          "USER"
+        ],
+        "title": "CommunityUserRole",
+        "description": "Enum for community user roles."
+      },
+      "CondensedScope": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "resource_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "application_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "is_active",
+          "resource_id",
+          "application_id",
+          "id",
+          "scope"
+        ],
+        "title": "CondensedScope"
+      },
+      "CreateCommunityInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "slug": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 3,
+            "pattern": "^[a-z0-9-_]+$",
+            "format": "slug",
+            "title": "Slug",
+            "description": "URL-friendly slug containing only lowercase letters, numbers, hyphens, and underscores",
+            "example": "my-community-slug"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "slug"
+        ],
+        "title": "CreateCommunityInput"
+      },
+      "CreateCommunityUserInput": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "community_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "role": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CommunityUserRole"
+              }
+            ],
+            "default": "USER"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "community_id"
+        ],
+        "title": "CreateCommunityUserInput"
+      },
+      "CreatePasswordlessUserInput": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "phone_number": {
+            "type": "string",
+            "format": "phone",
+            "title": "Phone Number",
+            "description": "Phone number in a standard format",
+            "example": "+1 (555) 123-4567"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email"
+        ],
+        "title": "CreatePasswordlessUserInput"
+      },
+      "DuplicateEmailOutput": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "count"
+        ],
+        "title": "DuplicateEmailOutput"
+      },
+      "GetCommunityOutput": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "slug": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 3,
+            "pattern": "^[a-z0-9-_]+$",
+            "format": "slug",
+            "title": "Slug",
+            "description": "URL-friendly slug containing only lowercase letters, numbers, hyphens, and underscores",
+            "example": "my-community-slug"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "is_active"
+        ],
+        "title": "GetCommunityOutput"
+      },
+      "GetCommunityUserOutput": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "community_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "role": {
+            "$ref": "#/components/schemas/CommunityUserRole"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "user_id",
+          "community_id",
+          "role",
+          "is_active"
+        ],
+        "title": "GetCommunityUserOutput"
+      },
+      "GetUserCommunitiesOutput": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "community_ids": {
+            "items": {
+              "type": "string",
+              "title": "HexUUID",
+              "description": "A unique identifier (UUID) in hexadecimal format",
+              "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+            },
+            "type": "array",
+            "title": "Community Ids"
+          },
+          "total_communities": {
+            "type": "integer",
+            "title": "Total Communities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "community_ids",
+          "total_communities"
+        ],
+        "title": "GetUserCommunitiesOutput"
+      },
+      "GetUserOutput": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "is_premium": {
+            "type": "boolean",
+            "title": "Is Premium",
+            "default": false
+          },
+          "is_admin": {
+            "type": "boolean",
+            "title": "Is Admin",
+            "default": false
+          },
+          "phone_number": {
+            "type": "string",
+            "title": "Phone Number"
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "title": "Terms Accepted",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "is_active"
+        ],
+        "title": "GetUserOutput"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ListCommunityOutput": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "slug": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 3,
+            "pattern": "^[a-z0-9-_]+$",
+            "format": "slug",
+            "title": "Slug",
+            "description": "URL-friendly slug containing only lowercase letters, numbers, hyphens, and underscores",
+            "example": "my-community-slug"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "is_active"
+        ],
+        "title": "ListCommunityOutput"
+      },
+      "ListCommunityUserOutput": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "community_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "role": {
+            "$ref": "#/components/schemas/CommunityUserRole"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "user_id",
+          "community_id",
+          "role",
+          "is_active"
+        ],
+        "title": "ListCommunityUserOutput"
+      },
+      "ListDuplicateEmailsOutput": {
+        "properties": {
+          "duplicate_emails": {
+            "items": {
+              "$ref": "#/components/schemas/DuplicateEmailOutput"
+            },
+            "type": "array",
+            "title": "Duplicate Emails"
+          },
+          "total_duplicate_groups": {
+            "type": "integer",
+            "title": "Total Duplicate Groups"
+          }
+        },
+        "type": "object",
+        "required": [
+          "duplicate_emails",
+          "total_duplicate_groups"
+        ],
+        "title": "ListDuplicateEmailsOutput"
+      },
+      "ListUserOutput": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "is_premium": {
+            "type": "boolean",
+            "title": "Is Premium",
+            "default": false
+          },
+          "is_admin": {
+            "type": "boolean",
+            "title": "Is Admin",
+            "default": false
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "title": "Terms Accepted",
+            "default": false
+          },
+          "phone_number": {
+            "type": "string",
+            "title": "Phone Number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "email",
+          "is_active"
+        ],
+        "title": "ListUserOutput"
+      },
+      "Platform": {
+        "enum": [
+          "android",
+          "ios"
+        ],
+        "title": "Platform",
+        "description": "An enumeration."
+      },
+      "RecaptchaVerifyInput": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "title": "Token"
+          },
+          "expected_action": {
+            "type": "string",
+            "title": "Expected Action"
+          },
+          "site_key": {
+            "type": "string",
+            "title": "Site Key",
+            "default": "6LftfggsAAAAAAOTNkwqMnprbetk0pb2hikQ9Zgh"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token",
+          "expected_action"
+        ],
+        "title": "RecaptchaVerifyInput",
+        "description": "Input model for reCAPTCHA Enterprise verification."
+      },
+      "RecaptchaVerifyOutput": {
+        "properties": {
+          "valid": {
+            "type": "boolean",
+            "title": "Valid"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reasons"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          }
+        },
+        "type": "object",
+        "required": [
+          "valid",
+          "score",
+          "reasons",
+          "action"
+        ],
+        "title": "RecaptchaVerifyOutput",
+        "description": "Output model for reCAPTCHA Enterprise verification."
+      },
+      "RefreshAccessTokenInput": {
+        "properties": {
+          "refresh_token": {
+            "type": "string",
+            "title": "Refresh Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "refresh_token"
+        ],
+        "title": "RefreshAccessTokenInput"
+      },
+      "Resource": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "is_active"
+        ],
+        "title": "Resource"
+      },
+      "ResourceInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "is_active"
+        ],
+        "title": "ResourceInput"
+      },
+      "Scope": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/Resource"
+          },
+          "application": {
+            "$ref": "#/components/schemas/Application"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "is_active",
+          "id",
+          "resource",
+          "application"
+        ],
+        "title": "Scope"
+      },
+      "ScopelessUser": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "phone_number": {
+            "type": "string",
+            "format": "phone",
+            "title": "Phone Number",
+            "description": "Phone number in a standard format",
+            "example": "+1 (555) 123-4567"
+          },
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "id",
+          "is_active"
+        ],
+        "title": "ScopelessUser"
+      },
+      "SingleFactorSignInInput": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "title": "Terms Accepted",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "email"
+        ],
+        "title": "SingleFactorSignInInput"
+      },
+      "TokenInput": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 1024,
+            "minLength": 2,
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "TokenInput"
+      },
+      "TokenOutput": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "access_token": {
+            "type": "string",
+            "title": "Access Token"
+          },
+          "refresh_token": {
+            "type": "string",
+            "title": "Refresh Token"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "access_token",
+          "refresh_token",
+          "token_type"
+        ],
+        "title": "TokenOutput"
+      },
+      "UpdateCommunityInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "slug": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 3,
+            "pattern": "^[a-z0-9-_]+$",
+            "format": "slug",
+            "title": "Slug",
+            "description": "URL-friendly slug containing only lowercase letters, numbers, hyphens, and underscores",
+            "example": "my-community-slug"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "title": "UpdateCommunityInput"
+      },
+      "UpdateCommunityUserInput": {
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/CommunityUserRole"
+          }
+        },
+        "type": "object",
+        "title": "UpdateCommunityUserInput"
+      },
+      "UpdateUserInput": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "is_admin": {
+            "type": "boolean",
+            "title": "Is Admin"
+          },
+          "is_premium": {
+            "type": "boolean",
+            "title": "Is Premium"
+          },
+          "phone_number": {
+            "type": "string",
+            "format": "phone",
+            "title": "Phone Number",
+            "description": "Phone number in a standard format",
+            "example": "+1 (555) 123-4567"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "UpdateUserInput"
+      },
+      "User": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "phone_number": {
+            "type": "string",
+            "format": "phone",
+            "title": "Phone Number",
+            "description": "Phone number in a standard format",
+            "example": "+1 (555) 123-4567"
+          },
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "scopes": {
+            "items": {
+              "$ref": "#/components/schemas/Scope"
+            },
+            "type": "array",
+            "title": "Scopes"
+          },
+          "communities": {
+            "items": {
+              "$ref": "#/components/schemas/Community"
+            },
+            "type": "array",
+            "title": "Communities",
+            "default": []
+          },
+          "is_admin": {
+            "type": "boolean",
+            "title": "Is Admin"
+          },
+          "is_premium": {
+            "type": "boolean",
+            "title": "Is Premium"
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "title": "Terms Accepted"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "id",
+          "is_active",
+          "scopes",
+          "is_admin",
+          "is_premium",
+          "terms_accepted"
+        ],
+        "title": "User"
+      },
+      "UserCreateInput": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "phone_number": {
+            "type": "string",
+            "format": "phone",
+            "title": "Phone Number",
+            "description": "Phone number in a standard format",
+            "example": "+1 (555) 123-4567"
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "UserCreateInput"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VerificationCodeInput": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 6,
+            "minLength": 6,
+            "title": "Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "code"
+        ],
+        "title": "VerificationCodeInput"
+      },
+      "Version": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "HexUUID",
+            "description": "A unique identifier (UUID) in hexadecimal format",
+            "example": "4fd3b167bc247548899e2e7e5f88d3b2"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/Platform"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "version"
+        ],
+        "title": "Version"
+      },
+      "VersionInput": {
+        "properties": {
+          "platform": {
+            "$ref": "#/components/schemas/Platform"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "version"
+        ],
+        "title": "VersionInput"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

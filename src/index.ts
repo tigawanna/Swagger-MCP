@@ -25,7 +25,6 @@ import { promptDefinitions, promptHandlers } from "./prompts/index.js";
 const server = new Server(
   {
     name: 'Swagger MCP Server',
-    description: 'A server that helps you build a MCP wrapper around your Swagger API',
     version: '1.0.0',
   },
   {

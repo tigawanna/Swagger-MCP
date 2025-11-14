@@ -1,5 +1,7 @@
 # Swagger MCP
 
+> **Note**: This project is a fork of the original Swagger MCP, intended to be published to npm and enable easy usage via `npx @tigawanna/swagger-mcp`.
+
 An MCP server that connects to a Swagger specification and helps an AI to build all the required models to generate a MCP server for that service.
 
 ## Features
@@ -20,22 +22,36 @@ An MCP server that connects to a Swagger specification and helps an AI to build 
 
 ## Installation
 
+### Quick Start (via npx)
+
+```bash
+npx @tigawanna/swagger-mcp
+```
+
+### Global Installation
+
+```bash
+npm install -g @tigawanna/swagger-mcp
+```
+
+### From Source
+
 1. Clone the repository:
 
-```
-git clone https://github.com/readingdancer/swagger-mcp.git
+```bash
+git clone https://github.com/tigawanna/swagger-mcp.git
 cd swagger-mcp
 ```
 
 2. Install dependencies:
 
-```
+```bash
 npm install
 ```
 
 3. Create a `.env` file based on the `.env.example` file:
 
-```
+```bash
 cp .env.example .env
 ```
 
@@ -79,7 +95,57 @@ npm run inspector
 
 ### Adding to Cursor
 
-To add this MCP server to Cursor:
+To add this MCP server to Cursor, you can use either the deployed version or a local build:
+
+#### Option 1: Using the Deployed Version (Recommended)
+
+Add the following configuration to your MCP config file (typically `~/.codeium/windsurf/mcp_config.json` or Claude's config):
+
+```json
+{
+  "mcpServers": {
+    "swagger-mcp": {
+      "command": "npx",
+      "args": ["@tigawanna/swagger-mcp"]
+    }
+  }
+}
+```
+
+This method uses the published npm package and doesn't require a local build.
+
+##### Adding Environment Variables
+
+You can pass environment variables inline in the MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "swagger-mcp": {
+      "command": "npx",
+      "args": ["@tigawanna/swagger-mcp"],
+      "env": {
+        "PORT": "3000",
+        "NODE_ENV": "development",
+        "LOG_LEVEL": "info",
+        "TEAMWORK_DOMAIN": "your-domain",
+        "TEAMWORK_USERNAME": "your_username_here",
+        "TEAMWORK_PASSWORD": "your_password_here"
+      }
+    }
+  }
+}
+```
+
+**Available Environment Variables:**
+- `PORT`: The port on which the server will run (default: 3000)
+- `NODE_ENV`: The environment (development, production, test)
+- `LOG_LEVEL`: Logging level (info, error, debug)
+- `TEAMWORK_DOMAIN`: Your Teamwork domain
+- `TEAMWORK_USERNAME`: Your Teamwork username
+- `TEAMWORK_PASSWORD`: Your Teamwork password
+
+#### Option 2: Using a Local Build
 
 1. Open Cursor Settings > Features > MCP
 2. Click "+ Add New MCP Server"

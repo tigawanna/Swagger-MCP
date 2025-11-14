@@ -1,0 +1,56 @@
+# Source files (we only want the built version)
+src/
+tests/
+*.ts
+!*.d.ts
+
+# Build configs
+tsconfig.json
+pnpm-workspace.yaml
+
+# Development files
+.env
+.env.example
+.env.*
+*.log
+logs/
+
+# Git
+.git/
+.github/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test and reference files
+test.json
+petstore.json
+*.json
+!package.json
+!package-lock.json
+ReferenceFiles/
+TodoNotepad
+TODO.md
+
+# Development scripts
+fix-imports.js
+
+# MCP config
+.swagger-mcp
+
+# Node modules (not needed in published package)
+node_modules/
+
+# Build artifacts we don't want
+dist/
+lib/
+coverage/
+.nyc_output/

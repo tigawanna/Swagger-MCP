@@ -1,8 +1,9 @@
 {
-  "name": "swagger-mcp",
+  "name": "@tigawanna/swagger-mcp",
   "version": "1.0.0",
-  "description": "Fetch Swagger definition from a URL",
+  "description": "MCP server for Swagger/OpenAPI specifications - Generate TypeScript code for models and endpoints",
   "type": "module",
+  "main": "./build/index.js",
   "bin": {
     "swagger-mcp": "./build/index.js"
   },
@@ -10,29 +11,42 @@
     "build": "tsc && node -e \"require('fs').copyFileSync('.env', 'build/.env'); require('fs').chmodSync('build/index.js', '755')\"",
     "watch": "tsc --watch",
     "inspector": "tsc && node -e \"require('fs').copyFileSync('.env', 'build/.env'); require('fs').chmodSync('build/index.js', '755')\" && npx @modelcontextprotocol/inspector build/index.js",
-    "test": "npx tsx tests/run-all-tests.ts"
+    "test": "npx tsx tests/run-all-tests.ts",
+    "prepublishOnly": "npm run build",
+    "prepare": "npm run build"
   },
   "files": [
-    "build"
+    "build",
+    "README.md",
+    "LICENSE",
+    "PROMPTS.md"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/readingdancer/swagger-mcp.git"
+    "url": "git+https://github.com/tigawanna/swagger-mcp.git"
   },
   "keywords": [
     "swagger",
-    "api",
-    "mcp",
-    "server",
     "openapi",
-    "generation"
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "api",
+    "code-generation",
+    "typescript",
+    "api-client",
+    "swagger-codegen",
+    "openapi-generator",
+    "cursor",
+    "windsurf",
+    "ai-tools"
   ],
-  "author": "Chris Houston",
+  "author": "tigawanna",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/readingdancer/swagger-mcp/issues"
+    "url": "https://github.com/tigawanna/swagger-mcp/issues"
   },
-  "homepage": "https://github.com/readingdancer/swagger-mcp#readme",
+  "homepage": "https://github.com/tigawanna/swagger-mcp#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
     "@types/js-yaml": "^4.0.9",
@@ -41,7 +55,8 @@
     "dotenv": "^16.4.7",
     "js-yaml": "^4.0.9",
     "minimist": "^1.2.8",
-    "winston": "^3.12.0"
+    "winston": "^3.12.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
