@@ -106,7 +106,7 @@ Add the following configuration to your MCP config file (typically `~/.codeium/w
   "mcpServers": {
     "swagger-mcp": {
       "command": "npx",
-      "args": ["@tigawanna/swagger-mcp"]
+      "args": ["swagger-mcp"]
     }
   }
 }
