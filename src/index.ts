@@ -1,16 +1,20 @@
+#!/usr/bin/env node
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
   CallToolRequestSchema,
+  ErrorCode,
   ListToolsRequestSchema,
   ListPromptsRequestSchema,
-  GetPromptRequestSchema
+  GetPromptRequestSchema,
+  McpError
 } from "@modelcontextprotocol/sdk/types.js";
 
-import logger from "./utils/logger.js";
+import { swaggerErrorMessage } from "./utils/errors.js";
 
 // Import tool definitions and handlers
-import { toolDefinitions, 
+import { toolDefinitions,
+  handleHelp,
   handleGetSwaggerDefinition,
   handleListEndpoints,
   handleListEndpointModels,
@@ -34,6 +38,16 @@ const server = new Server(
     },
   }
 );
+
+// Error handling
+server.onerror = (error) => console.error('[MCP Error]', error);
+
+// Signal handling for graceful shutdown
+process.on('SIGINT', async () => {
+  console.error('Shutting down Swagger MCP server...');
+  await server.close();
+  process.exit(0);
+});
 
 /**
  * Handler that lists available tools.
@@ -64,37 +78,38 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
     const promptName = request.params.name;
     const promptArgs = request.params.arguments || {};
     
-    logger.info(`Prompt request received: ${promptName}`);
-    logger.info(`Prompt arguments: ${JSON.stringify(promptArgs)}`);
+    console.error(`[Swagger-MCP] Prompt request: ${promptName}`);
+    console.error(`[Swagger-MCP] Arguments:`, JSON.stringify(promptArgs));
     
     const promptHandler = promptHandlers[promptName];
     
     if (!promptHandler) {
-      return {
-        error: {
-          code: -32601,
-          message: `Unknown prompt: ${promptName}`
-        }
-      };
+      throw new McpError(
+        ErrorCode.MethodNotFound,
+        `Unknown prompt: ${promptName}`
+      );
     }
     
     // Validate arguments against schema
     const validationResult = promptHandler.schema.safeParse(promptArgs);
     if (!validationResult.success) {
-      return {
-        error: {
-          code: -32602,
-          message: `Invalid arguments: ${validationResult.error.message}`
-        }
-      };
+      throw new McpError(
+        ErrorCode.InvalidParams,
+        `Invalid arguments: ${validationResult.error.message}`
+      );
     }
     
     // Call the prompt handler
     const result = await promptHandler.handler(promptArgs);
     return result;
-  } catch (error: any) {
-    logger.error(`MCP prompt error: ${error.message}`);
-    throw new Error(`Prompt execution failed: ${error.message}`);
+  } catch (error: unknown) {
+    if (error instanceof McpError) {
+      throw error;
+    }
+    throw new McpError(
+      ErrorCode.InternalError,
+      `Prompt execution failed: ${swaggerErrorMessage(error)}`
+    );
   }
 });
 
@@ -104,13 +119,18 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
  */
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   try {
-    logger.info(`Tool call received: ${request.params.name}`);
-    logger.info(`Tool arguments: ${JSON.stringify(request.params.arguments || {})}`);
-    
     const name = request.params.name;
     const input = request.params.arguments;
     
+    console.error(`[Swagger-MCP] Tool call: ${name}`);
+    if (input && Object.keys(input).length > 0) {
+      console.error(`[Swagger-MCP] Arguments:`, JSON.stringify(input));
+    }
+    
     switch (name) {
+      case "help":
+        return await handleHelp(input);
+      
       case "getSwaggerDefinition":
         return await handleGetSwaggerDefinition(input);
       
@@ -127,16 +147,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return await handleGenerateEndpointToolCode(input);
       
       default:
-        return {
-          content: [{
-            type: "text",
-            text: `Unknown tool: ${name}`
-          }]
-        };
+        throw new McpError(
+          ErrorCode.MethodNotFound,
+          `Unknown tool: ${name}`
+        );
     }
-  } catch (error: any) {
-    logger.error(`MCP tool error: ${error.message}`);
-    throw new Error(`Tool execution failed: ${error.message}`);
+  } catch (error: unknown) {
+    console.error(`[Swagger-MCP] Error in tool ${request.params.name}:`, error);
+    if (error instanceof McpError) {
+      throw error;
+    }
+    throw new McpError(
+      ErrorCode.InternalError,
+      `Tool execution failed: ${swaggerErrorMessage(error)}`
+    );
   }
 });
 
@@ -145,12 +169,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
  * This allows the server to communicate via standard input/output streams.
  */
 async function main() {
-    // Connect using stdio transport
-    const transport = new StdioServerTransport();
-    await server.connect(transport);    
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error('Swagger MCP server running on stdio');
 }
 
 main().catch((error) => {
-  logger.error("Server error:", error);
+  console.error('Fatal error starting server:', error);
   process.exit(1);
 });

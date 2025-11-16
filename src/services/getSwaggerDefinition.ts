@@ -1,4 +1,3 @@
-import logger from '../utils/logger.js';
 import axios from 'axios';
 import { GetSwaggerParams , SavedSwaggerDefinition } from './core/interfaces.js';
 import crypto from 'crypto';
@@ -12,7 +11,6 @@ import path from 'path';
  */
 export const getSwaggerDefinition = async (params: GetSwaggerParams) => {
   try {
-    logger.info('Fetching Swagger definition from ' + params.url);
     if (!params.url) {
       throw new Error('URL is required');
     }
@@ -23,7 +21,6 @@ export const getSwaggerDefinition = async (params: GetSwaggerParams) => {
 
     // If the response is not a valid Swagger definition, throw an error
     if (!response.data.openapi && !response.data.swagger) {
-      logger.error('Invalid Swagger definition');
       throw new Error('Invalid Swagger definition');
     }
 
@@ -51,8 +48,7 @@ export const getSwaggerDefinition = async (params: GetSwaggerParams) => {
     // Return the Swagger definition
     return savedSwaggerDefinition;
   } catch (error: any) {
-    logger.error(`Swagger API error: ${error.message}`);
-    throw new Error('Failed to fetch Swagger definition');
+    throw new Error(`Failed to fetch Swagger definition: ${error.message}`);
   }
 };
 

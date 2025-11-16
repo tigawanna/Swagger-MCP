@@ -4,8 +4,6 @@
  */
 
 import fs from 'fs';
-import path from 'path';
-import logger from '../utils/logger.js';
 import { SwaggerFileParams } from './core/interfaces.js';
 
 // Interface for endpoint information
@@ -67,8 +65,7 @@ async function listEndpoints(params: SwaggerFileParams): Promise<Endpoint[]> {
     
     return endpoints;
   } catch (error: any) {
-    logger.error(`Error listing endpoints: ${error.message}`);
-    throw error;
+    throw new Error(`Error listing endpoints: ${error.message}`);
   }
 }
 

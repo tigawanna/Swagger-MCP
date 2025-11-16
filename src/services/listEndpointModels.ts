@@ -4,8 +4,6 @@
  */
 
 import fs from 'fs';
-import path from 'path';
-import logger from '../utils/logger.js';
 
 // Interface for model information
 export interface Model {
@@ -38,7 +36,6 @@ async function listEndpointModels(params: ListEndpointModelsParams): Promise<Mod
     }
     
     // Read the Swagger definition file
-    logger.info(`Reading Swagger definition from ${swaggerFilePath}`);
     const swaggerContent = fs.readFileSync(swaggerFilePath, 'utf8');
     const swaggerDefinition = JSON.parse(swaggerContent);
     
@@ -100,8 +97,7 @@ async function listEndpointModels(params: ListEndpointModelsParams): Promise<Mod
     
     return models;
   } catch (error: any) {
-    logger.error(`Error listing endpoint models: ${error.message}`);
-    throw error;
+    throw new Error(`Error listing endpoint models: ${error.message}`);
   }
 }
 

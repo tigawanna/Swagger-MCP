@@ -6,7 +6,6 @@
 
 import fs from 'fs';
 import yaml from 'js-yaml';
-import logger from '../utils/logger.js';
 import { validateMCPSchema, formatValidationErrors } from '../utils/validateMCPSchema.js';
 
 // Interface for the function parameters
@@ -44,7 +43,6 @@ async function generateEndpointToolCode(params: GenerateEndpointToolCodeParams):
     }
     
     // Read the Swagger definition file
-    logger.info(`Reading Swagger definition from ${swaggerFilePath}`);
     const swaggerContent = fs.readFileSync(swaggerFilePath, 'utf8');
     
     // Parse the Swagger definition based on file extension
@@ -77,19 +75,15 @@ async function generateEndpointToolCode(params: GenerateEndpointToolCodeParams):
     const generatedCode = `${toolDefinition}\n\n${handlerFunction}`;
     
     // Validate the generated code against the MCP schema
-    logger.info('Validating generated code against MCP schema');
     const validationResult = validateMCPSchema(generatedCode);
     
     if (!validationResult.isValid) {
-      logger.error('Generated code failed MCP schema validation');
       return formatValidationErrors(validationResult.errors);
     }
     
-    logger.info('Generated code passed MCP schema validation');
     return generatedCode;
   } catch (error: any) {
-    logger.error(`Error generating endpoint tool code: ${error.message}`);
-    throw error;
+    throw new Error(`Error generating endpoint tool code: ${error.message}`);
   }
 }
 

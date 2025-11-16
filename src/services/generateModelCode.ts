@@ -4,8 +4,6 @@
  */
 
 import fs from 'fs';
-import path from 'path';
-import logger from '../utils/logger.js';
 
 // Interface for the function parameters
 export interface GenerateModelCodeParams {
@@ -31,7 +29,6 @@ async function generateModelCode(params: GenerateModelCodeParams): Promise<strin
     }
     
     // Read the Swagger definition file
-    logger.info(`Reading Swagger definition from ${swaggerFilePath}`);
     const swaggerContent = fs.readFileSync(swaggerFilePath, 'utf8');
     const swaggerDefinition = JSON.parse(swaggerContent);
     
@@ -58,8 +55,7 @@ async function generateModelCode(params: GenerateModelCodeParams): Promise<strin
     
     return typeScriptCode;
   } catch (error: any) {
-    logger.error(`Error generating model code: ${error.message}`);
-    throw error;
+    throw new Error(`Error generating model code: ${error.message}`);
   }
 }
 

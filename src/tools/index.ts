@@ -3,6 +3,7 @@
  * Exports all tool definitions and implementations
  */
 
+import { help } from './help.js';
 import { getSwaggerDefinition } from './getSwaggerDefinition.js';
 import { listEndpoints } from './listEndpoints.js';
 import { listEndpointModels } from './listEndpointModels.js';
@@ -11,6 +12,7 @@ import { generateEndpointToolCode } from './generateEndpointToolCode.js';
 
 // Tool definitions array
 export const toolDefinitions = [
+  help,
   getSwaggerDefinition,
   listEndpoints,
   listEndpointModels,
@@ -19,6 +21,7 @@ export const toolDefinitions = [
 ];
 
 // Export all tool handlers
+export { handleHelp } from './help.js';
 export { handleGetSwaggerDefinition } from './getSwaggerDefinition.js';
 export { handleListEndpoints } from './listEndpoints.js';
 export { handleListEndpointModels } from './listEndpointModels.js';

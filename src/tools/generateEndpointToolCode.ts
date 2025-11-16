@@ -3,7 +3,6 @@
  * Generates TypeScript code for an MCP tool definition based on a Swagger endpoint
  */
 
-import logger from "../utils/logger.js";
 import swaggerService from "../services/index.js";
 
 // Tool definition
@@ -44,39 +43,12 @@ export const generateEndpointToolCode = {
 
 // Tool handler
 export async function handleGenerateEndpointToolCode(input: any) {
-  logger.info('Calling swaggerService.generateEndpointToolCode()');
-  logger.info(`Query parameters: ${JSON.stringify(input)}`);
+  const tsCode = await swaggerService.generateEndpointToolCode(input);
   
-  try {
-    const tsCode = await swaggerService.generateEndpointToolCode(input);
-    logger.info(`Generated TypeScript code for endpoint ${input.method} ${input.path}`);
-    
-    // Check if the response is a validation error message (starts with "MCP Schema Validation Failed")
-    if (tsCode.trim().startsWith('MCP Schema Validation Failed')) {
-      logger.error('MCP schema validation failed');
-      return {
-        content: [{
-          type: "text",
-          text: tsCode
-        }],
-        isError: true
-      };
-    }
-    
-    return {
-      content: [{
-        type: "text",
-        text: tsCode
-      }]
-    };
-  } catch (error: any) {
-    logger.error(`Error in generateEndpointToolCode handler: ${error.message}`);
-    return {
-      content: [{
-        type: "text",
-        text: `Error generating endpoint tool code: ${error.message}`
-      }],
-      isError: true
-    };
-  }
+  return {
+    content: [{
+      type: "text",
+      text: tsCode
+    }]
+  };
 } 

@@ -3,8 +3,6 @@
  * Validates generated tool code against the MCP schema
  */
 
-import logger from './logger.js';
-
 /**
  * Validates a generated tool definition against the MCP schema
  * @param toolCode The generated TypeScript code for the tool
@@ -12,7 +10,6 @@ import logger from './logger.js';
  */
 export function validateMCPSchema(toolCode: string): { isValid: boolean; errors: string[] } {
   try {
-    logger.info('Validating tool definition against MCP schema...');
     const errors: string[] = [];
     
     // Check if the tool has a name property
@@ -24,7 +21,6 @@ export function validateMCPSchema(toolCode: string): { isValid: boolean; errors:
     // Check if the tool has a description property
     const descMatch = toolCode.match(/description:\s*["']([^"']+)["']/);
     if (!descMatch) {
-      logger.warn('Missing "description" property in tool definition (optional)');
       // Description is optional, so we don't add to errors
     }
     
@@ -43,14 +39,12 @@ export function validateMCPSchema(toolCode: string): { isValid: boolean; errors:
     // Check if the inputSchema has a properties property
     const propertiesMatch = toolCode.match(/properties:\s*{/);
     if (!propertiesMatch) {
-      logger.warn('Missing "properties" property in inputSchema (optional)');
       // Properties is technically optional, so we don't add to errors
     }
     
     // Check if the inputSchema has a required property
     const requiredMatch = toolCode.match(/required:\s*\[/);
     if (!requiredMatch) {
-      logger.warn('Missing "required" property in inputSchema (optional)');
       // Required is optional, so we don't add to errors
     }
     
@@ -65,7 +59,6 @@ export function validateMCPSchema(toolCode: string): { isValid: boolean; errors:
       errors
     };
   } catch (error: any) {
-    logger.error(`Error validating tool against MCP schema: ${error.message}`);
     return {
       isValid: false,
       errors: [`Error validating tool against MCP schema: ${error.message}`]
