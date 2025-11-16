@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./build/index.js",
   "bin": {
-    "swagger-mcp": "./build/index.js"
+    "swagger-mcp": "build/index.js"
   },
   "scripts": {
     "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
