@@ -4,9 +4,7 @@
   "description": "MCP server for Swagger/OpenAPI specifications - Generate TypeScript code for models and endpoints",
   "type": "module",
   "main": "./build/index.js",
-  "bin": {
-    "swagger-mcp": "build/index.js"
-  },
+  "bin":"./build/index.js",
   "scripts": {
     "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
     "prestart": "pnpm run build",
